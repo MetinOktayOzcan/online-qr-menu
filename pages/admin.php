@@ -1,3 +1,36 @@
+<?php
+
+$sayfa = array_key_first($_GET);
+
+if ($sayfa == NULL){
+    $sayfa = "dashboard";
+}
+
+switch ($sayfa) {
+    case 'dashboard':
+        $icerik = "admin/dashboard.php";
+        break;
+    case 'category':
+        $icerik = "admin/category.php";
+        break;
+    case 'inventory_2':
+        $icerik = "admin/dashboard.php";
+        break;
+    case 'qr_code_2':
+        $icerik = "admin/qr_code_2.php";
+        break;
+    case 'settings':
+        $icerik = "admin/settings.php";
+        break;
+    default:
+        echo "<h1>404</h1>";
+        break;
+}
+
+echo $sayfa;
+
+?>
+
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -127,19 +160,19 @@
         </div>
         
         <nav class="nav flex-column flex-grow-1 overflow-auto">
-            <a href="index.php" class="nav-link active">
+            <a href="?dashboard" class="nav-link active">
                 <span class="material-symbols-outlined">dashboard</span> Dashboard
             </a>
-            <a href="kategoriler.php" class="nav-link">
+            <a href="?category" class="nav-link">
                 <span class="material-symbols-outlined">category</span> Kategoriler
             </a>
-            <a href="urunler.php" class="nav-link">
+            <a href="?inventory_2" class="nav-link">
                 <span class="material-symbols-outlined">inventory_2</span> Ürünler
             </a>
-            <a href="qr-olustur.php" class="nav-link">
+            <a href="?qr_code_2" class="nav-link">
                 <span class="material-symbols-outlined">qr_code_2</span> QR Oluştur
             </a>
-            <a href="ayarlar.php" class="nav-link">
+            <a href="?settings" class="nav-link">
                 <span class="material-symbols-outlined">settings</span> Ayarlar
             </a>
         </nav>
@@ -172,7 +205,10 @@
 
         <div class="container-fluid p-4">
             
-            
+            <?php
+            require_once $icerik;
+            ?>
+
 
         </div>
     </main>
