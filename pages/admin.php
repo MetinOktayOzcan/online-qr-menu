@@ -1,6 +1,6 @@
 <?php
 
-$sayfa = array_key_first($_GET);
+$sayfa = $_GET["sayfa"];
 
 if ($sayfa == NULL){
     $sayfa = "dashboard";
@@ -13,17 +13,35 @@ switch ($sayfa) {
     case 'category':
         $icerik = "admin/category.php";
         break;
-    case 'inventory_2':
-        $icerik = "admin/dashboard.php";
+    case 'categoryEdit':
+        $icerik = "admin/category-edit.php"; 
         break;
-    case 'qr_code_2':
-        $icerik = "admin/qr_code_2.php";
+     case 'categoryDelete':
+        $icerik = "admin/category-delete.php"; 
+        break;
+     case 'categoryAdd':
+        $icerik = "admin/category-add.php"; 
+        break;
+    case 'inventory':
+        $icerik = "admin/inventory.php";
+        break;
+    case 'inventoryAdd':
+        $icerik = "admin/inventory-add.php";
+        break;
+    case 'inventoryEdit':
+        $icerik = "admin/inventory-Edit.php";
+        break;
+    case 'inventoryDelete':
+        $icerik = "admin/inventory-delete.php";
+        break;
+    case 'qrCode':
+        $icerik = "admin/qr_code.php";
         break;
     case 'settings':
         $icerik = "admin/settings.php";
         break;
     default:
-        echo "<h1>404</h1>";
+        $icerik = "admin/404.php";
         break;
 }
 
@@ -160,19 +178,19 @@ echo $sayfa;
         </div>
         
         <nav class="nav flex-column flex-grow-1 overflow-auto">
-            <a href="?dashboard" class="nav-link active">
+            <a href="admin.php?sayfa=dashboard" class="nav-link active">
                 <span class="material-symbols-outlined">dashboard</span> Dashboard
             </a>
-            <a href="?category" class="nav-link">
+            <a href="admin.php?sayfa=category" class="nav-link">
                 <span class="material-symbols-outlined">category</span> Kategoriler
             </a>
-            <a href="?inventory_2" class="nav-link">
-                <span class="material-symbols-outlined">inventory_2</span> Ürünler
+            <a href="admin.php?sayfa=inventory" class="nav-link">
+                <span class="material-symbols-outlined">inventory</span> Ürünler
             </a>
-            <a href="?qr_code_2" class="nav-link">
-                <span class="material-symbols-outlined">qr_code_2</span> QR Oluştur
+            <a href="admin.php?sayfa=qrCode" class="nav-link">
+                <span class="material-symbols-outlined">qr_code</span> QR Oluştur
             </a>
-            <a href="?settings" class="nav-link">
+            <a href="admin.php?sayfa=settings" class="nav-link">
                 <span class="material-symbols-outlined">settings</span> Ayarlar
             </a>
         </nav>
