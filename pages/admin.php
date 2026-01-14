@@ -45,8 +45,6 @@ switch ($sayfa) {
         break;
 }
 
-echo $sayfa;
-
 ?>
 
 <!DOCTYPE html>
