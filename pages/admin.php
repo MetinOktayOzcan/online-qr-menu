@@ -1,4 +1,7 @@
 <?php
+include("../core/connection.php");
+    $gelen_sayfa = $_GET['sayfa'];
+    echo $gelen_sayfa;
 
 $sayfa = $_GET["sayfa"];
 
@@ -176,19 +179,19 @@ switch ($sayfa) {
         </div>
         
         <nav class="nav flex-column flex-grow-1 overflow-auto">
-            <a href="admin.php?sayfa=dashboard" class="nav-link active">
+            <a href="admin.php?sayfa=dashboard" class="nav-link <?php echo ($gelen_sayfa == "dashboard") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">dashboard</span> Dashboard
             </a>
-            <a href="admin.php?sayfa=category" class="nav-link">
+            <a href="admin.php?sayfa=category" class="nav-link <?php echo ($gelen_sayfa == "category") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">category</span> Kategoriler
             </a>
-            <a href="admin.php?sayfa=inventory" class="nav-link">
+            <a href="admin.php?sayfa=inventory" class="nav-link <?php echo ($gelen_sayfa == "inventory") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">inventory</span> Ürünler
             </a>
-            <a href="admin.php?sayfa=qrCode" class="nav-link">
+            <a href="admin.php?sayfa=qrCode" class="nav-link <?php echo ($gelen_sayfa == "qrCode") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">qr_code</span> QR Oluştur
             </a>
-            <a href="admin.php?sayfa=settings" class="nav-link">
+            <a href="admin.php?sayfa=settings" class="nav-link <?php echo ($gelen_sayfa == "settings") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">settings</span> Ayarlar
             </a>
         </nav>
