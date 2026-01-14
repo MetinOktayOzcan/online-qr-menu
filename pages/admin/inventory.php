@@ -2,10 +2,9 @@
     include("../core/connection.php");
     $sql="SELECT urunler.*, kategoriler.kategori_adi
             FROM urunler
-            INNER JOIN kategoriler ON urunler.kategori_id = kategoriler.id";
+            LEFT JOIN kategoriler ON urunler.kategori_id = kategoriler.id";
     
     $resuld1 = mysqli_query($conn,$sql);
-    $row1 = mysqli_fetch_assoc($resuld1);
 
 
 
@@ -29,7 +28,7 @@
                         <th scope="col">Kategori</th>
                         <th scope="col">Fiyat</th>
                         <th scope="col">Durum</th>
-                        <th scope="col" class="text-end">İşlemler</th>
+                        <th scoFpe="col" class="text-end">İşlemler</th>
                     </tr>
                 </thead>
                 <tbody>

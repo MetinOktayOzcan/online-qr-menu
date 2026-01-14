@@ -1,3 +1,12 @@
+<?php
+    include("../core/connection.php");
+    $sql="SELECT * FROM `kategoriler`";
+    
+    $resuld = mysqli_query($conn,$sql);
+
+
+
+?>
 <div class="container-fluid pt-4 px-4">
     
     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -18,19 +27,25 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php
+                     while ($row = mysqli_fetch_assoc($resuld)){
+                    ?>
                     <tr>
-                        <td><span class="badge bg-secondary">1</span></td>
-                        <td class="fw-bold text-white">Burgerler</td>
+                        <td><span class="badge bg-secondary"><?php echo $row['id']?></span></td>
+                        <td class="fw-bold text-white"><?php echo $row['kategori_adi']?></td>
                         <td class="text-end">
-                            <a href="admin.php?sayfa=categoryEdit" class="btn btn-sm btn-outline-info border-0 text-info me-2" title="Düzenle">
+                            <a href="admin.php?sayfa=categoryEdit&id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-info border-0 text-info me-2" title="Düzenle">
                                 <span class="material-symbols-outlined fs-5">edit</span>
                             </a>
                             
-                            <a href="admin.php?sayfa=categoryDelete" class="btn btn-sm btn-outline-danger border-0 text-danger" title="Sil" onclick="return confirm('Silmek istediğine emin misin?')">
+                            <a href="admin.php?sayfa=categoryDelete&id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-danger border-0 text-danger" title="Sil" onclick="return confirm('Silmek istediğine emin misin?')">
                                 <span class="material-symbols-outlined fs-5">delete</span>
                             </a>
                         </td>
                     </tr>
+                    <?php
+                         }
+                ?>
                 </tbody>
             </table>
         </div>

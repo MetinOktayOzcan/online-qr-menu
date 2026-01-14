@@ -1,3 +1,24 @@
+<?php
+    include("../core/connection.php");
+if (isset($_POST['submit'])) {
+    
+    $kategori_adi= mysqli_real_escape_string($conn, $_POST['kategori_adi']);
+    $sira= mysqli_real_escape_string($conn, $_POST['sira']);
+
+    $sql = "INSERT INTO `kategoriler`(`kategori_adi`, `sira`) VALUES ('$kategori_adi','$sira')";
+    
+    $result = mysqli_query($conn, $sql);
+
+    if (!$result) {
+        echo "Hata: " . mysqli_error($conn);
+    }
+
+    echo "<script>
+            window.location.href = 'admin.php?sayfa=category';
+        </script>";
+}
+?>
+
 <div class="container-fluid pt-4 px-4">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
@@ -21,7 +42,7 @@
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
                         <a href="admin.php?sayfa=category" class="btn btn-secondary">İptal</a>
-                        <button type="submit" class="btn btn-warning fw-bold text-dark">Kaydet</button>
+                        <button type="submit" name="submit" class="btn btn-warning fw-bold text-dark">Kaydet</button>
                     </div>
                 </form>
             </div>
