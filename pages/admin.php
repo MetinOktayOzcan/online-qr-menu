@@ -1,15 +1,14 @@
 <?php
 include("../core/connection.php");
-    $gelen_sayfa = $_GET['sayfa'];
-    echo $gelen_sayfa;
 
-$sayfa = $_GET["sayfa"];
 
-if ($sayfa == NULL){
-    $sayfa = "dashboard";
+$gelen_sayfa = $_GET['sayfa'];
+
+if ($gelen_sayfa == NULL){
+    $gelen_sayfa = "dashboard";
 }
 
-switch ($sayfa) {
+switch ($gelen_sayfa) {
     case 'dashboard':
         $icerik = "admin/dashboard.php";
         break;

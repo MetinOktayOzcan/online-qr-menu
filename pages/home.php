@@ -1,5 +1,23 @@
 <?php 
 include 'includes/header.php'; 
+    $kategori_adi = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+
+    include("../core/connection.php");
+    $sql="SELECT urunler.*, kategoriler.kategori_adi
+        FROM urunler
+        LEFT JOIN kategoriler ON urunler.kategori_id = kategoriler.id 
+        WHERE urunler.durum = 1 ";
+
+    if (!empty($kategori_adi)) {
+        $sql.="AND kategori_adi = '$kategori_adi'";
+    }
+    
+    $resuld1 = mysqli_query($conn,$sql);
+
+    $sql_kategoriler = "SELECT * FROM kategoriler";
+    $result_kategoriler = mysqli_query($conn, $sql_kategoriler);
+
+
 ?>
 
 <main class="container-xl pb-5">
@@ -14,11 +32,13 @@ include 'includes/header.php';
 
     <div class="sticky-category-bar mb-4 shadow-sm">
         <div class="category-scroll d-flex justify-content-lg-center px-2">
-            <a href="?kategori=ana-yemek" class="category-btn active">Ana Yemekler</a>
-            <a href="?kategori=baslangic" class="category-btn">Başlangıçlar</a>
-            <a href="?kategori=burger" class="category-btn">Burgerler</a>
-            <a href="?kategori=tatli" class="category-btn">Tatlılar</a>
-            <a href="?kategori=icecek" class="category-btn">İçecekler</a>
+            <?php
+                while ($row2 = mysqli_fetch_assoc($result_kategoriler)){
+                    ?>
+            <a href="?kategori=<?php echo $row2['kategori_adi']?>" class="category-btn <?php echo ($kategori_adi == $row2['kategori_adi']) ? "active" : ""; ?>"><?php echo $row2['kategori_adi']?></a>
+            <?php
+                }
+                ?>
         </div>
     </div>
 
@@ -30,60 +50,32 @@ include 'includes/header.php';
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <?php
+                while ($row = mysqli_fetch_assoc($resuld1)){
+                    ?>
         
         <div class="col">
             <div class="card h-100 rounded-4">
                 <div class="img-wrapper">
-                    <span class="position-absolute top-0 end-0 m-3 badge bg-success shadow-sm">Yeni</span>
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="card-img-top">
+                    <span class="position-absolute top-0 end-0 m-3 badge bg-success shadow-sm"><?php echo $row['kategori_adi']?></span>
+                    <img src="<?php echo $row['resim_yolu']?>" class="card-img-top">
                 </div>
                 <div class="card-body p-4 d-flex flex-column">
-                    <h5 class="fw-bold mb-1 text-white">Sebzeli Bowl</h5>
-                    <p class="small text-muted flex-grow-1">Kinoa, avokado, mısır ve özel soslu ızgara sebzeler.</p>
+                    <h5 class="fw-bold mb-1 text-white"><?php echo $row['urun_adi']?></h5>
+                    <p class="small text-muted flex-grow-1"><?php echo $row['aciklama']?></p>
                     
                     <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-10">
-                        <span class="price-badge">185 ₺</span>
-                        <button class="btn btn-add">Ekle +</button>
+                        <span class="price-badge"><?php echo $row['fiyat']?> ₺</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card h-100 rounded-4">
-                <div class="img-wrapper">
-                    <span class="position-absolute top-0 end-0 m-3 badge bg-warning text-dark shadow-sm">Popüler</span>
-                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=600&q=80" class="card-img-top">
-                </div>
-                <div class="card-body p-4 d-flex flex-column">
-                    <h5 class="fw-bold mb-1 text-white">Lokum Bonfile</h5>
-                    <p class="small text-muted flex-grow-1">200gr dana bonfile, patates püresi ve kuşkonmaz.</p>
-                    
-                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-10">
-                        <span class="price-badge">420 ₺</span>
-                        <button class="btn btn-add">Ekle +</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php
+                }
+                ?>
 
-        <div class="col">
-            <div class="card h-100 rounded-4">
-                <div class="img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" class="card-img-top">
-                </div>
-                <div class="card-body p-4 d-flex flex-column">
-                    <h5 class="fw-bold mb-1 text-white">Cheddar Burger</h5>
-                    <p class="small text-muted flex-grow-1">Ev yapımı 180gr köfte, çift cheddar, karamelize soğan.</p>
-                    
-                    <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-secondary border-opacity-10">
-                        <span class="price-badge">260 ₺</span>
-                        <button class="btn btn-add">Ekle +</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
     </div>
 
     <div class="text-center mt-5">
