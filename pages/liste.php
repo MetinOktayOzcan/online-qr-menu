@@ -1,25 +1,40 @@
 <?php 
-include 'includes/header.php'; 
-include("../core/connection.php");
+    include 'includes/header.php'; 
+    include("../core/connection.php");
 
-$sql ="SELECT urunler.*, kategoriler.kategori_adi
+    $filtre = " WHERE durum = 1 ";
+    if (isset($_GET['kategoriler'])) {
+        $secim = array_map('intval', $_GET['kategoriler']);
+        $secim_yolu = implode(",", $secim);
+        $filtre .= " AND kategori_id IN ($secim_yolu)";
+    }
+
+    $sql3 = "SELECT COUNT(id) AS total FROM urunler" . $filtre;
+    $query_result = mysqli_query($conn, $sql3);
+    $row = mysqli_fetch_assoc($query_result);
+    $total_rows = $row['total'];
+
+    $results_per_page = 9;
+    $totalPages = ceil($total_rows / $results_per_page);
+
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    if($page < 1) $page = 1;
+    if($page > $totalPages && $totalPages > 0) $page = $totalPages;
+
+    $start_from = ($page - 1) * $results_per_page;
+
+    $sql = "SELECT urunler.*, kategoriler.kategori_adi
             FROM urunler
-            LEFT JOIN kategoriler ON urunler.kategori_id = kategoriler.id WHERE durum = 1 ";
-$sql2= "SELECT * FROM kategoriler";
+            LEFT JOIN kategoriler ON urunler.kategori_id = kategoriler.id " 
+            . $filtre . 
+            " LIMIT $start_from, $results_per_page";
 
-if (isset($_GET['kategoriler'])) {
-    $seçim = array_map('intval', $_GET['kategoriler']);
-    $seçim = implode(",", $seçim);
-    $sql .= " AND kategori_id IN ($seçim)";
-}
+    $result = mysqli_query($conn, $sql);
 
-$result =  mysqli_query($conn,$sql);
-$result2 =  mysqli_query($conn,$sql2);
-
-
-
-
+    $sql2 = "SELECT * FROM kategoriler";
+    $result2 = mysqli_query($conn, $sql2);
 ?>
+
 
     <section class="page-header">
         <div class="text-center">
@@ -105,15 +120,23 @@ $result2 =  mysqli_query($conn,$sql2);
                 
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Önceki</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Sonraki</a>
-                        </li>
+                        
+                        <?php 
+                        $kategoriPrm = "";
+                        if(isset($_GET['kategoriler'])){
+                            foreach($_GET['kategoriler'] as $cat_id){
+                                $kategoriPrm .= "&kategoriler[]=" . intval($cat_id);
+                            }
+                        }
+
+                        for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <li class="page-item <?php echo ($page == $i) ? 'active' : ''; ?>">
+                                <a class="page-link" href="?page=<?php echo $i . $kategoriPrm; ?>">
+                                    <?php echo $i; ?>
+                                </a>
+                            </li>
+                        <?php endfor; ?>
+
                     </ul>
                 </nav>
 
