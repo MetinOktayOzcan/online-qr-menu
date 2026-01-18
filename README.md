@@ -1,4 +1,4 @@
-# 🍔 RestoQR - Online Menü ve Yönetim Sistemi
+# 🍔 Online Menü ve Yönetim Sistemi
 
 Restoranlar ve kafeler için geliştirdiğim, müşterilerin QR kod ile menüye ulaşıp ürünleri inceleyebildiği web tabanlı bir proje.
 
@@ -31,6 +31,5 @@ Restoranlar ve kafeler için geliştirdiğim, müşterilerin QR kod ile menüye 
 3. `core/connection.php` dosyasındaki veritabanı ayarlarını yapın.
 
 ## 📌 Yapılacaklar (Roadmap)
-- [ ] Gelişmiş Ürün Arama Modülü.
 - [ ] Admin paneli şifre değiştirme modülü.
 - [ ] SEO uyumlu URL yapısı.
