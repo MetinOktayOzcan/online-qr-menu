@@ -100,13 +100,41 @@
                 <p class="text-secondary mt-3 small">Menü sistemini yönetmek için giriş yapın.</p>
             </div>
 
-            <form action="giris-yap.php" method="POST">
+            <?php
+            include("../core/connection.php");
+
+            if(isset($_POST["login"])){
+                $email = $_POST['email'];
+                $pass = $_POST['pass'];
+                $sql = "SELECT * FROM yoneticiler WHERE eposta='$email'";
+                $result=mysqli_query($conn,$sql);
+                $user=mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+                if ($user) {
+                    if (password_verify($pass,$user['sifre'])) {
+                        session_start();
+                        $_SESSION['user'] = "yes";
+                        header("location: admin.php");
+                        die();
+                    }else{
+                    echo "<div class='alert alert-danger'>parola uyuşmuyor</div>";
+                    }
+                }else{
+                    echo "<div class='alert alert-danger'>eposta uyuşmuyor</div>";
+
+                }
+
+
+            }
+            ?>
+
+            <form action="login.php" method="POST">
                 
                 <div class="mb-4">
                     <label class="form-label small fw-bold">Kullanıcı Adı</label>
                     <div class="position-relative">
-                        <span class="material-symbols-outlined input-icon">person</span>
-                        <input type="text" name="kullanici_adi" class="form-control form-control-custom" placeholder="Kullanıcı adınız">
+                        <span class="material-symbols-outlined input-icon">email</span>
+                        <input type="text" name="email" class="form-control form-control-custom" placeholder="eposta adresi">
                     </div>
                 </div>
 
@@ -114,12 +142,12 @@
                     <label class="form-label small fw-bold">Şifre</label>
                     <div class="position-relative">
                         <span class="material-symbols-outlined input-icon">lock</span>
-                        <input type="password" name="sifre" class="form-control form-control-custom" placeholder="Şifreniz">
+                        <input type="password" name="pass" class="form-control form-control-custom" placeholder="Şifreniz">
                         <span class="material-symbols-outlined position-absolute end-0 top-50 translate-middle-y me-3 text-secondary" style="cursor: pointer;">visibility</span>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-login shadow-lg">Giriş Yap</button>
+                <button type="submit" name="login" class="btn btn-login shadow-lg">Giriş Yap</button>
 
             </form>
 
