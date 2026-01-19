@@ -113,7 +113,9 @@
                 if ($user) {
                     if (password_verify($pass,$user['sifre'])) {
                         session_start();
-                        $_SESSION['user'] = "yes";
+                        $_SESSION['id'] = $user['id'];
+                        $_SESSION['kullanici_adi'] = $user['kullanici_adi'];
+                        $_SESSION['rol'] = $user['rol'];
                         header("location: admin.php");
                         die();
                     }else{

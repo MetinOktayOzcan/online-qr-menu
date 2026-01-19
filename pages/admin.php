@@ -1,5 +1,13 @@
 <?php
+session_start();
+include("../core/functions.php");
 include("../core/connection.php");
+
+if (!is_admin()) {
+    header("location: login.php");
+    exit();
+
+}
 
 
 $gelen_sayfa = $_GET['sayfa'];
