@@ -2,7 +2,6 @@
 include 'includes/header.php'; 
     $kategori_adi = isset($_GET['kategori']) ? $_GET['kategori'] : '';
 
-    include("../core/connection.php");
     $sql="SELECT urunler.*, kategoriler.kategori_adi
         FROM urunler
         LEFT JOIN kategoriler ON urunler.kategori_id = kategoriler.id 
@@ -58,7 +57,7 @@ include 'includes/header.php';
             <div class="card h-100 rounded-4">
                 <div class="img-wrapper">
                     <span class="position-absolute top-0 end-0 m-3 badge bg-success shadow-sm"><?php echo $row['kategori_adi']?></span>
-                    <img src="<?php echo $row['resim_yolu']?>" class="card-img-top">
+                    <img src="<?= ROOT ?>/uploads/<?php echo $row['resim_yolu']?>" class="card-img-top">
                 </div>
                 <div class="card-body p-4 d-flex flex-column">
                     <h5 class="fw-bold mb-1 text-white"><?php echo $row['urun_adi']?></h5>

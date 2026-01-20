@@ -1,5 +1,4 @@
 <?php
-include("../core/connection.php");
     $gelen_id = (int)$_GET['id'];
 
     $sql = "DELETE FROM `urunler` WHERE id = $gelen_id"; 
@@ -7,7 +6,7 @@ include("../core/connection.php");
     $resuld = mysqli_query($conn,$sql);
 
     echo "<script>
-            window.location.href = 'admin.php?sayfa=inventory';
+            window.location.href = 'admin?sayfa=inventory';
         </script>";
 
 

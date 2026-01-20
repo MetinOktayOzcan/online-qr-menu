@@ -1,5 +1,4 @@
 <?php
-    include("../core/connection.php");
     $gelen_id = (int)$_GET['id'];
     $sql = "SELECT * FROM kategoriler WHERE id = $gelen_id"; 
 
@@ -21,7 +20,7 @@ if (isset($_POST['submit'])) {
     }
 
     echo "<script>
-            window.location.href = 'admin.php?sayfa=category';
+            window.location.href = 'admin?sayfa=category';
         </script>";
 }
 ?>
@@ -50,7 +49,7 @@ if (isset($_POST['submit'])) {
                     <input type="hidden" name="id" value="">
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <a href="admin.php?sayfa=category" class="btn btn-secondary">İptal</a>
+                        <a hre?sayfa=category" class="btn btn-secondary">İptal</a>
                         <button type="submit" name="submit" class="btn btn-info fw-bold text-dark">Güncelle</button>
                     </div>
                 </form>

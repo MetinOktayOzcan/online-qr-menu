@@ -1,5 +1,4 @@
 <?php
-    include("../core/connection.php");
 
     $sql1 = "SELECT COUNT(*) as sayi FROM urunler";
     $row1 = mysqli_fetch_assoc(mysqli_query($conn, $sql1));
@@ -67,7 +66,7 @@
         <div class="bg-dark border border-secondary rounded p-4 h-100">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h6 class="mb-0 text-white">Son Eklenen 5 Ürün</h6>
-                <a href="admin.php?sayfa=inventory" class="text-white-50 text-decoration-none small">Tümünü Gör</a>
+                <a href="admin?sayfa=inventory" class="text-white-50 text-decoration-none small">Tümünü Gör</a>
             </div>
             
             <div class="table-responsive">
@@ -104,12 +103,12 @@
             <h6 class="mb-4 text-white">Hızlı İşlemler</h6>
             <div class="d-grid gap-3">
                 
-                <a href="admin.php?sayfa=inventoryAdd" class="btn btn-outline-warning text-start py-3 px-4">
+                <a href="admin?sayfa=inventoryAdd" class="btn btn-outline-warning text-start py-3 px-4">
                     <span class="material-symbols-outlined align-middle me-2">add_circle</span>
                     Yeni Ürün Ekle
                 </a>
 
-                <a href="admin.php?sayfa=categoryAdd" class="btn btn-outline-primary text-start py-3 px-4">
+                <a href="admin?sayfa=categoryAdd" class="btn btn-outline-primary text-start py-3 px-4">
                     <span class="material-symbols-outlined align-middle me-2">category</span>
                     Yeni Kategori Ekle
                 </a>

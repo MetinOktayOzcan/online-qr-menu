@@ -13,6 +13,6 @@ $file = "pages/" . url(0) . ".php";
 if (file_exists($file)) {
     require $file;
 }else{
-    require '404.php';
+    require 'pages/404.php';
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-    include("../core/connection.php");
 if (isset($_POST['submit'])) {
     
     $kategori_adi= mysqli_real_escape_string($conn, $_POST['kategori_adi']);
@@ -14,7 +13,7 @@ if (isset($_POST['submit'])) {
     }
 
     echo "<script>
-            window.location.href = 'admin.php?sayfa=category';
+            window.location.href = 'admin?sayfa=category';
         </script>";
 }
 ?>
@@ -41,7 +40,7 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="d-flex justify-content-end gap-2 mt-4">
-                        <a href="admin.php?sayfa=category" class="btn btn-secondary">İptal</a>
+                        <a href="admin?sayfa=category" class="btn btn-secondary">İptal</a>
                         <button type="submit" name="submit" class="btn btn-warning fw-bold text-dark">Kaydet</button>
                     </div>
                 </form>

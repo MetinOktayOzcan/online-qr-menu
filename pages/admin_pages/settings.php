@@ -1,5 +1,4 @@
 <?php
-    include("../core/connection.php");
     $sql="SELECT * FROM `ayarlar`";
     
     $resuld = mysqli_query($conn,$sql);

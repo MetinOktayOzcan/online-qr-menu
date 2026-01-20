@@ -1,5 +1,4 @@
 <?php
-    include("../core/connection.php");
     $sql="SELECT * FROM `kategoriler`";
     
     $resuld = mysqli_query($conn,$sql);
@@ -11,7 +10,7 @@
     
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h3 class="text-white">Kategori Yönetimi</h3>
-        <a href="admin.php?sayfa=categoryAdd" class="btn btn-warning fw-bold text-dark">
+        <a href="admin?sayfa=categoryAdd" class="btn btn-warning fw-bold text-dark">
             <span class="material-symbols-outlined align-middle fs-5">add</span> Yeni Kategori
         </a>
     </div>
@@ -34,11 +33,11 @@
                         <td><span class="badge bg-secondary"><?php echo $row['id']?></span></td>
                         <td class="fw-bold text-white"><?php echo $row['kategori_adi']?></td>
                         <td class="text-end">
-                            <a href="admin.php?sayfa=categoryEdit&id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-info border-0 text-info me-2" title="Düzenle">
+                            <a href="admin?sayfa=categoryEdit&id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-info border-0 text-info me-2" title="Düzenle">
                                 <span class="material-symbols-outlined fs-5">edit</span>
                             </a>
                             
-                            <a href="admin.php?sayfa=categoryDelete&id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-danger border-0 text-danger" title="Sil" onclick="return confirm('Silmek istediğine emin misin?')">
+                            <a href="admin?sayfa=categoryDelete&id=<?php echo $row['id']?>" class="btn btn-sm btn-outline-danger border-0 text-danger" title="Sil" onclick="return confirm('Silmek istediğine emin misin?')">
                                 <span class="material-symbols-outlined fs-5">delete</span>
                             </a>
                         </td>

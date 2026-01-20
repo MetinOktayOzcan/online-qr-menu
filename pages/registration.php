@@ -101,7 +101,6 @@
             </div>
 
             <?php
-            include("../core/connection.php");
 
             if (isset($_POST['submit'])) {
                 $fullname = $_POST['fullname'];

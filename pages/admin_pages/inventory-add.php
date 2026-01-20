@@ -1,5 +1,4 @@
 <?php
-include("../core/connection.php");
 
 if (isset($_POST['submit'])) {
     
@@ -35,7 +34,7 @@ if (isset($_POST['submit'])) {
     }
 
     echo "<script>
-            window.location.href = 'admin.php?sayfa=inventory';
+            window.location.href = 'admin?sayfa=inventory';
         </script>";
 }
 ?>
@@ -103,7 +102,7 @@ if (isset($_POST['submit'])) {
                     </div>
 
                     <div class="d-flex justify-content-end gap-2 mt-3">
-                        <a href="admin.php?sayfa=inventory" class="btn btn-secondary">İptal</a>
+                        <a href="admin?sayfa=inventory" class="btn btn-secondary">İptal</a>
                         <button type="submit" name="submit" class="btn btn-warning fw-bold text-dark">Kaydet</button>
                     </div>
                 </form>

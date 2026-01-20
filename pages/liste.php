@@ -1,6 +1,5 @@
 <?php 
     include 'includes/header.php'; 
-    include("../core/connection.php");
 
     $filtre = " WHERE durum = 1 ";
     if (isset($_GET['kategoriler'])) {
@@ -95,7 +94,7 @@
                         <div class="product-card">
                             <div class="card-img-wrapper">
                                 <span class="position-absolute top-0 end-0 m-2 badge bg-danger">Popüler</span>
-                                <img src="<?php echo $row['resim_yolu']?>" class="card-img-top">
+                                <img src="<?= ROOT ?>/uploads/<?php echo $row['resim_yolu']?>" class="card-img-top">
                             </div>
                             <div class="p-4 d-flex flex-column flex-grow-1">
                                 <div class="d-flex justify-content-between align-items-start mb-2">

@@ -1,5 +1,4 @@
 <?php
-    include("../core/connection.php");
     $gelen_id = (int)$_GET['id'];
     $sql = "SELECT * FROM urunler WHERE id = $gelen_id"; 
 
@@ -41,7 +40,7 @@ if (isset($_POST['submit'])) {
     }
 
     echo "<script>
-            window.location.href = 'admin.php?sayfa=inventory';
+            window.location.href = 'admin?sayfa=inventory';
         </script>";
 }
 ?>
@@ -102,9 +101,16 @@ if (isset($_POST['submit'])) {
 
                         <div class="col-12 mb-3">
                             <label class="form-label text-white-50 d-block">Mevcut Görsel</label>
-                            <div class="bg-secondary rounded align-items-center justify-content-center d-flex text-white mb-2 overflow-hidden" style="width: 80px; height: 80px;">
-                                <?php if (!empty($row['resim_yolu']) && file_exists($row['resim_yolu'])):?>
-                                    <img src="<?php echo$row['resim_yolu']; ?>" alt="Ürün Resmi" style="width: 100%; height: 100%; object-fit: cover;">
+                            <div class="bg-secondary rounded d-flex align-items-center justify-content-center text-white overflow-hidden" style="width: 60px; height: 60px;">
+                                <?php 
+                                    $temiz_dosya_adi = basename($row['resim_yolu']); 
+                                    $fiziksel_yol = "uploads/" . $temiz_dosya_adi;
+                                ?>
+
+                                <?php if (!empty($temiz_dosya_adi) && file_exists($fiziksel_yol)): ?>
+                                    <img src="<?= ROOT ?>/uploads/<?= $temiz_dosya_adi ?>" 
+                                        alt="Ürün Resmi" 
+                                        style="width: 100%; height: 100%; object-fit: cover;">
                                 <?php else: ?>
                                     <span class="material-symbols-outlined fs-3">image</span>
                                 <?php endif; ?>
@@ -118,7 +124,7 @@ if (isset($_POST['submit'])) {
                     <input type="hidden" name="id" value="">
 
                     <div class="d-flex justify-content-end gap-2 mt-3">
-                        <a href="admin.php?sayfa=inventory" class="btn btn-secondary">İptal</a>
+                        <a href="admin?sayfa=inventory" class="btn btn-secondary">İptal</a>
                         <button type="submit" name ="submit" class="btn btn-info fw-bold text-dark">Güncelle</button>
                     </div>
                 </form>

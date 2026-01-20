@@ -1,16 +1,12 @@
 <?php
-session_start();
-include("../core/functions.php");
-include("../core/connection.php");
-
 if (!is_admin()) {
     header("location: login.php");
     exit();
-
 }
+$gelen_sayfa = "";
 
-
-$gelen_sayfa = $_GET['sayfa'];
+if (isset($_GET['sayfa'])) {
+    $gelen_sayfa = $_GET['sayfa'];}
 
 if ($gelen_sayfa == NULL){
     $gelen_sayfa = "dashboard";
@@ -18,43 +14,42 @@ if ($gelen_sayfa == NULL){
 
 switch ($gelen_sayfa) {
     case 'dashboard':
-        $icerik = "admin/dashboard.php";
+        $icerik = "pages/admin_pages/dashboard.php";
         break;
     case 'category':
-        $icerik = "admin/category.php";
+        $icerik = "pages/admin_pages/category.php";
         break;
     case 'categoryEdit':
-        $icerik = "admin/category-edit.php"; 
+        $icerik = "pages/admin_pages/category-edit.php"; 
         break;
      case 'categoryDelete':
-        $icerik = "admin/category-delete.php"; 
+        $icerik = "pages/admin_pages/category-delete.php"; 
         break;
      case 'categoryAdd':
-        $icerik = "admin/category-add.php"; 
+        $icerik = "pages/admin_pages/category-add.php"; 
         break;
     case 'inventory':
-        $icerik = "admin/inventory.php";
+        $icerik = "pages/admin_pages/inventory.php";
         break;
     case 'inventoryAdd':
-        $icerik = "admin/inventory-add.php";
+        $icerik = "pages/admin_pages/inventory-add.php";
         break;
     case 'inventoryEdit':
-        $icerik = "admin/inventory-Edit.php";
+        $icerik = "pages/admin_pages/inventory-Edit.php";
         break;
     case 'inventoryDelete':
-        $icerik = "admin/inventory-delete.php";
+        $icerik = "pages/admin_pages/inventory-delete.php";
         break;
     case 'qrCode':
-        $icerik = "admin/qr_code.php";
+        $icerik = "pages/admin_pages/qr_code.php";
         break;
     case 'settings':
-        $icerik = "admin/settings.php";
+        $icerik = "pages/admin_pages/settings.php";
         break;
     default:
-        $icerik = "admin/404.php";
+        $icerik = "pages/admin_pages/404.php";
         break;
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -186,25 +181,25 @@ switch ($gelen_sayfa) {
         </div>
         
         <nav class="nav flex-column flex-grow-1 overflow-auto">
-            <a href="admin.php?sayfa=dashboard" class="nav-link <?php echo ($gelen_sayfa == "dashboard") ? "active" : ""; ?>">
+            <a href="admin?sayfa=dashboard" class="nav-link <?php echo ($gelen_sayfa == "dashboard") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">dashboard</span> Dashboard
             </a>
-            <a href="admin.php?sayfa=category" class="nav-link <?php echo ($gelen_sayfa == "category") ? "active" : ""; ?>">
+            <a href="admin?sayfa=category" class="nav-link <?php echo ($gelen_sayfa == "category") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">category</span> Kategoriler
             </a>
-            <a href="admin.php?sayfa=inventory" class="nav-link <?php echo ($gelen_sayfa == "inventory") ? "active" : ""; ?>">
+            <a href="admin?sayfa=inventory" class="nav-link <?php echo ($gelen_sayfa == "inventory") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">inventory</span> Ürünler
             </a>
-            <a href="admin.php?sayfa=qrCode" class="nav-link <?php echo ($gelen_sayfa == "qrCode") ? "active" : ""; ?>">
+            <a href="admin?sayfa=qrCode" class="nav-link <?php echo ($gelen_sayfa == "qrCode") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">qr_code</span> QR Oluştur
             </a>
-            <a href="admin.php?sayfa=settings" class="nav-link <?php echo ($gelen_sayfa == "settings") ? "active" : ""; ?>">
+            <a href="admin?sayfa=settings" class="nav-link <?php echo ($gelen_sayfa == "settings") ? "active" : ""; ?>">
                 <span class="material-symbols-outlined">settings</span> Ayarlar
             </a>
         </nav>
 
         <div class="mt-auto border-top border-secondary border-opacity-25 pt-3">
-            <a href="cikis.php" class="nav-link text-danger hover-bg-danger">
+            <a href="logout.php" class="nav-link text-danger hover-bg-danger">
                 <span class="material-symbols-outlined">logout</span> Çıkış Yap
             </a>
         </div>
