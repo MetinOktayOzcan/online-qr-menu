@@ -50,6 +50,11 @@ switch ($gelen_sayfa) {
         $icerik = "pages/admin_pages/404.php";
         break;
 }
+
+    $header_titleSql = "SELECT header_title FROM `ayarlar`";
+    $header_titleResult = mysqli_query($conn, $header_titleSql);
+    $header_row = mysqli_fetch_assoc($header_titleResult);
+    $site_baslik = !empty($header_row['header_title']) ? $header_row['header_title'] : "Online Menü";
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +62,7 @@ switch ($gelen_sayfa) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RestoAdmin - Dashboard</title>
+    <title><?php echo $site_baslik?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>

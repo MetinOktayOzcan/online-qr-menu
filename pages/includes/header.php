@@ -1,9 +1,18 @@
+<?php 
+    $header_titleSql = "SELECT header_title FROM `ayarlar`";
+    $header_titleResult = mysqli_query($conn, $header_titleSql);
+    $header_row = mysqli_fetch_assoc($header_titleResult);
+    $site_baslik = !empty($header_row['header_title']) ? $header_row['header_title'] : "Online Menü";
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="tr" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Menü - Premium Steakhouse</title>
+    <title><?php echo $site_baslik  ?></title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -76,11 +85,5 @@
                 <span class="material-symbols-outlined text-warning fs-1">restaurant</span>
                 <span class="fw-bold fs-4 text-white">Online Menü</span>
             </a>
-            
-            <div class="d-flex align-items-center gap-2">
-                 <a href="?tema=degistir" class="btn btn-outline-secondary rounded-circle d-flex align-items-center justify-content-center border-secondary text-white" style="width: 45px; height: 45px; text-decoration: none;">
-                    <span class="material-symbols-outlined">light_mode</span>
-                </a>
-            </div>
         </div>
     </nav>
