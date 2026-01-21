@@ -1,6 +1,11 @@
 <?php
 require_once "core/init.php"; 
 
+$veritabaniTabloKontrol = mysqli_query($conn, "SHOW TABLES LIKE 'ayarlar'");
+if (mysqli_num_rows($veritabaniTabloKontrol) == 0) {
+    create_tables();
+}
+  
 function url($key=null){
     $arr = explode("/",trim($_GET['url'] ?? "home","/"));
     if (!is_numeric($key)) {
