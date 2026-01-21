@@ -1,5 +1,6 @@
 <?php
 session_destroy();
-header("location: login.php");
+$_SESSION = [];
+header("Location: " . ROOT . "/login");
 exit();
 ?>

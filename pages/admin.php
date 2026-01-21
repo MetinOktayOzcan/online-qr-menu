@@ -1,6 +1,6 @@
 <?php
 if (!is_admin()) {
-    header("location: login.php");
+    header("Location: " . ROOT . "/login");    
     exit();
 }
 $gelen_sayfa = "";
@@ -204,7 +204,7 @@ switch ($gelen_sayfa) {
         </nav>
 
         <div class="mt-auto border-top border-secondary border-opacity-25 pt-3">
-            <a href="logout.php" class="nav-link text-danger hover-bg-danger">
+            <a href="logout" class="nav-link text-danger hover-bg-danger">
                 <span class="material-symbols-outlined">logout</span> Çıkış Yap
             </a>
         </div>
