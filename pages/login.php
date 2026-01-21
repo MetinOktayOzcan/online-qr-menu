@@ -114,7 +114,7 @@
                         $_SESSION['id'] = $user['id'];
                         $_SESSION['kullanici_adi'] = $user['kullanici_adi'];
                         $_SESSION['rol'] = $user['rol'];
-                        header("location: admin.php");
+                        header("location: admin");
                         die();
                     }else{
                     echo "<div class='alert alert-danger'>parola uyuşmuyor</div>";
@@ -128,7 +128,7 @@
             }
             ?>
 
-            <form action="login.php" method="POST">
+            <form action="" method="POST">
                 
                 <div class="mb-4">
                     <label class="form-label small fw-bold">Kullanıcı Adı</label>
@@ -152,7 +152,7 @@
             </form>
 
             <div class="text-center mt-4 pt-4 border-top border-secondary border-opacity-25">
-                <a href="home.php" class="text-decoration-none text-secondary small d-flex align-items-center justify-content-center gap-1">
+                <a href="home" class="text-decoration-none text-secondary small d-flex align-items-center justify-content-center gap-1">
                     <span class="material-symbols-outlined fs-6">arrow_back</span>
                     Menüye Dön
                 </a>

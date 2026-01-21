@@ -131,15 +131,16 @@
                     foreach ($errors as $error) {
                         echo "<div class='alert alert-danger'>$error</div>";
                     }
-                }else{
-                    $sql = "INSERT INTO `yoneticiler`(`kullanici_adi`, `eposta`, `sifre`, `rol`) VALUES ('$fullname','$email','$passHash','admin')";
-                    mysqli_query($conn,$sql);
-                }
+                } else {
+                        $sql = "INSERT INTO `yoneticiler`(`kullanici_adi`, `eposta`, `sifre`, `rol`) VALUES ('$fullname','$email','$passHash','admin')";
+                        mysqli_query($conn, $sql);
+
+                        }
 
             }   
             ?>
 
-            <form action="registration.php" method="POST">
+            <form action="" method="POST">
                 
                 <div class="mb-4">
                     <label class="form-label small fw-bold">Kullanıcı Adı</label>
