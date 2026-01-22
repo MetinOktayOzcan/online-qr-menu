@@ -43,7 +43,7 @@
             <span class="material-symbols-outlined text-success" style="font-size: 3rem;">attach_money</span>
             <div class="ms-3 text-end">
                 <p class="mb-2 text-white-50">Ortalama Fiyat</p>
-                <h6 class="mb-0 text-white fs-4"><?php echo $row3['sayi']?> ₺</h6>
+                <h6 class="mb-0 text-white fs-4"><?php echo number_format($row3['sayi'],2)?> ₺</h6>
             </div>
         </div>
     </div>
